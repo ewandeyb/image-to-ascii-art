@@ -6,10 +6,15 @@
 from PIL import Image
 
 # Open the image
-im = Image.open("kawhi_shot.jpg")
+im = Image.open("test.png")
+
+width, height = 300,150
+
+#Resize Image for equal outputs
+resized_image = im.resize(( width,height ))
 
 # Convert image to RGB
-to_rgb = im.convert('RGB')
+to_rgb = resized_image.convert('RGB')
 
 # Map out range of pixels to ascii
 ascii_mapping = {
@@ -38,9 +43,9 @@ def converter(brightness):
    
 
 # Print out the ascii equivalent
-for i in range(im.size[1]):
-   for j in range(im.size[0]):
-      pixelRGB = to_rgb.getpixel((j, i)) 
+for i in range(height):
+   for j in range(width):
+      pixelRGB = resized_image.getpixel((j, i)) 
       R, G, B = pixelRGB
       brightness = sum(pixelRGB) // 3
 
